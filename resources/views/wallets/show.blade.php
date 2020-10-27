@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex justify-center">
         <div class="w-full sm:max-w-md mt-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg absolute">
-            <div class="flex justify-center text-4xl">Wallet info</div>
+            <div class="flex justify-center text-4xl font-bold">Wallet info</div>
             <div class="wallet-info container">
                 <div class="mr-full mt-2 w-full">Wallet name: {{ $wallet->name }}</div>
                 <div class="mr-full w-full">Balance: {{ $wallet->balance }}</div>

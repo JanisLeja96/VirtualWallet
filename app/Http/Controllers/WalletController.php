@@ -47,5 +47,23 @@ class WalletController extends Controller
         return redirect('/wallets');
     }
 
+    public function edit(Wallet $wallet)
+    {
+        return view('wallets.edit', ['wallet' => $wallet]);
+    }
+
+    public function update(Wallet $wallet)
+    {
+        request()->validate([
+            'name' => 'required',
+        ]);
+
+        $wallet->update([
+            'name' => request('name'),
+        ]);
+
+        return redirect($wallet->path());
+    }
+
 
 }

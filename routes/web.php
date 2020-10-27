@@ -41,3 +41,11 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->delete('/wallets/{wallet}', [WalletController::class, 'destroy'])
     ->name('deleteWallet');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/wallets/{wallet}/edit', [WalletController::class, 'edit'])
+    ->name('editWallet');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->put('/wallets/{wallet}', [WalletController::class, 'update'])
+    ->name('updateWallet');
