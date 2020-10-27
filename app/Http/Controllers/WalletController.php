@@ -41,5 +41,11 @@ class WalletController extends Controller
         return view('wallets.show', ['wallet' => $wallet]);
     }
 
+    public function destroy(Wallet $wallet)
+    {
+        $wallet->delete();
+        return redirect('/wallets');
+    }
+
 
 }

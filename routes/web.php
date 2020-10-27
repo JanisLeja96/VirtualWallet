@@ -37,3 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/wallets/{wallet}', [WalletController::class, 'show'])
     ->name('showWallet');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->delete('/wallets/{wallet}', [WalletController::class, 'destroy'])
+    ->name('deleteWallet');
