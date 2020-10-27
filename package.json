@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
-        "bulma": "^0.9.1"
+        "bulma": "^0.9.1",
+        "font-awesome": "^4.7.0"
     }
 }
