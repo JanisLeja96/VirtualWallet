@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,3 +50,11 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->put('/wallets/{wallet}', [WalletController::class, 'update'])
     ->name('updateWallet');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/wallets/{wallet}/send', [TransactionController::class, 'create'])
+    ->name('createTransaction');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/wallets/{wallet}/send', [TransactionController::class, 'store'])
+    ->name('sendMoney');

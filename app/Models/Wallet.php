@@ -9,7 +9,7 @@ class Wallet extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'balance'];
 
     public function user()
     {
@@ -19,5 +19,15 @@ class Wallet extends Model
     public function path()
     {
         return route('showWallet', $this);
+    }
+
+    public function getBalanceAttribute($value)
+    {
+        return number_format($value, 2);
+    }
+
+    public function deductFromBalance(float $amount)
+    {
+        $this->attributes['balance'] -= $amount;
     }
 }
