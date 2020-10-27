@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex justify-center">
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <div class="flex justify-center text-lg"><h1>Create new wallet</h1></div>
+            <div class="flex justify-center text-4xl font-bold">Create new wallet</div>
             <div class="mt-8 flex justify-center">
                 <form method="post" action="/wallets/store">
                     @csrf

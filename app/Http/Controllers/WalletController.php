@@ -36,5 +36,10 @@ class WalletController extends Controller
         return redirect('/wallets');
     }
 
+    public function show(Wallet $wallet)
+    {
+        return view('wallets.show', ['wallet' => $wallet]);
+    }
+
 
 }

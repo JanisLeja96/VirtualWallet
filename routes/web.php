@@ -34,4 +34,6 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->post('/wallets/store', [WalletController::class, 'store'])
     ->name('storeWallet');
 
-Route::get('/wallets/{id}', [WalletController::class, 'show']);
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/wallets/{wallet}', [WalletController::class, 'show'])
+    ->name('showWallet');
