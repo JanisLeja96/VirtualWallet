@@ -25,3 +25,13 @@ Route::get('/register', function () {
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/wallets', [WalletController::class, 'index'])
     ->name('wallets');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/wallets/create', [WalletController::class, 'create'])
+    ->name('createWallet');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/wallets/store', [WalletController::class, 'store'])
+    ->name('storeWallet');
+
+Route::get('/wallets/{id}', [WalletController::class, 'show']);
