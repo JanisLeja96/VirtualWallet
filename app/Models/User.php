@@ -34,4 +34,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
 }

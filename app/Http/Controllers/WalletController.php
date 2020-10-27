@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
 
     public function index()
     {
-        return view('wallets.index', ['wallets' => Wallet::all()]);
+        return view('wallets.index', ['wallets' => Wallet::where('user_id', Auth::user()['id'])->get()]);
     }
 
     public function create()
