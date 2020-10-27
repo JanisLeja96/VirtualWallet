@@ -3,7 +3,7 @@
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <div class="flex justify-center text-4xl font-bold">Create new wallet</div>
             <div class="mt-8 flex justify-center">
-                <form method="post" action="/wallets/store">
+                <form method="post" action="{{ route('storeWallet') }}">
                     @csrf
                     <label for="name">Wallet name:</label>
                     <input class="flex rounded-full border border-gray-800 @error('name') is-danger @enderror" name="name" value="{{ old('name') }}" required>
