@@ -30,4 +30,14 @@ class Wallet extends Model
     {
         $this->attributes['balance'] -= $amount;
     }
+
+    public function outgoingTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'sender_id');
+    }
+
+    public function incomingTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'recipient_id');
+    }
 }
