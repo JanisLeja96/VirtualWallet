@@ -57,4 +57,16 @@ class TransactionController extends Controller
         $transaction->save();
         return redirect($wallet->path());
     }
+
+    public function mark(Wallet $wallet, Transaction $transaction)
+    {
+        if ($transaction->fraudulent == 0) {
+            $transaction->fraudulent = 1;
+        } else {
+            $transaction->fraudulent = 0;
+        }
+
+        $transaction->save();
+        return redirect($wallet->path());
+    }
 }

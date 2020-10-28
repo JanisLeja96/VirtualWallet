@@ -28,12 +28,12 @@ class Wallet extends Model
 
     public function outgoingTransactions()
     {
-        return $this->hasMany(Transaction::class, 'sender_id');
+        return $this->hasMany(Transaction::class, 'sender_id')->orderByDesc('created_at');
     }
 
     public function incomingTransactions()
     {
-        return $this->hasMany(Transaction::class, 'recipient_id');
+        return $this->hasMany(Transaction::class, 'recipient_id')->orderByDesc('created_at');
     }
 
 }

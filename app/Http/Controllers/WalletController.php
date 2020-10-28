@@ -54,6 +54,10 @@ class WalletController extends Controller
             return !in_array($wallet->id, str_split($transaction['hidden_for']));
         });
 
+        usort($transactions, function($a, $b) {
+            return strtotime($b['created_at']) - strtotime($a['created_at']);
+        });
+
         return view('wallets.show', [
             'wallet' => $wallet,
             'transactions' => $transactions
