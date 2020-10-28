@@ -50,6 +50,10 @@ class WalletController extends Controller
 
         $transactions = [...$outgoing, ...$incoming];
 
+        $transactions = array_filter($transactions, function($transaction) use ($wallet) {
+            return !in_array($wallet->id, str_split($transaction['hidden_for']));
+        });
+
         return view('wallets.show', [
             'wallet' => $wallet,
             'transactions' => $transactions

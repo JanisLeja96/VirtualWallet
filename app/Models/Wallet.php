@@ -21,11 +21,6 @@ class Wallet extends Model
         return route('showWallet', $this);
     }
 
-    public function getBalanceAttribute($value)
-    {
-        return number_format($value, 2);
-    }
-
     public function deductFromBalance(float $amount)
     {
         $this->attributes['balance'] -= $amount;

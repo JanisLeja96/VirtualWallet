@@ -5,7 +5,7 @@
             <div class="wallet-info container">
                 <div class="mr-full mt-2 w-full">Wallet name: <strong>{{ $wallet->name }}</strong></div>
                 <div class="mr-full w-full">Wallet ID: <strong>{{ $wallet->id }}</strong></div>
-                <div class="mr-full w-full">Balance: <strong>€{{ $wallet->balance }}</strong></div>
+                <div class="mr-full w-full">Balance: <strong>€{{ number_format($wallet->balance, 2) }}</strong></div>
             </div>
             <div class="container mt-4">
                 @if ($transactions)

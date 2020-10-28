@@ -29,7 +29,7 @@ class TransactionController extends Controller
             return back()->withError('Wallet not found')->withInput();
         }
 
-        if ($wallet->balance < request('amount')) {
+        if ($wallet->balance < (float) request('amount')) {
             return back()->withError('Insufficient funds')->withInput();
         }
 
@@ -50,10 +50,11 @@ class TransactionController extends Controller
         return redirect($wallet->path());
     }
 
-    public function destroy(Wallet $wallet, string $transactionId)
+    public function hide(Wallet $wallet, string $transactionId)
     {
         $transaction = Transaction::find($transactionId);
-        $transaction->delete();
+        $transaction->hidden_for .= " {$wallet->id}";
+        $transaction->save();
         return redirect($wallet->path());
     }
 }

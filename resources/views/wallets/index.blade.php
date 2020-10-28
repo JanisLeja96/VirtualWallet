@@ -6,7 +6,7 @@
                 <a href="/wallets/{{ $wallet->id }}">
                     <div class="flex w-full h-16 border-gray-800 border items-center mt-4">
                         <div class="flex w-3/4 text-xl font-black font-bold truncate">{{ $wallet->name }}</div>
-                        <div class="flex w-4/12">€{{ $wallet->balance }}</div>
+                        <div class="flex w-4/12">€{{ number_format($wallet->balance, 2) }}</div>
                     </div>
                 </a>
 

@@ -58,3 +58,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->post('/wallets/{wallet}/send', [TransactionController::class, 'store'])
     ->name('sendMoney');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->delete('/wallets/{wallet}/transactions/{transaction}', [TransactionController::class, 'hide'])
+    ->name('hideTransaction');
