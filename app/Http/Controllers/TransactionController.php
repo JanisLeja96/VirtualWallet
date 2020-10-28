@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -21,8 +22,16 @@ class TransactionController extends Controller
             'description' => 'required',
             'recipient_wallet_id' => 'required'
         ]);
+        try {
+            $recipientWallet = Wallet::findOrFail(request('recipient_wallet_id'));
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError('Wallet not found')->withInput();
+        }
 
-        $recipientWallet = Wallet::find(request('recipient_wallet_id'));
+        if ($wallet->balance < request('amount')) {
+            return back()->withError('Insufficient funds')->withInput();
+        }
+
 
         $transaction = new Transaction();
         $transaction->amount = request('amount');

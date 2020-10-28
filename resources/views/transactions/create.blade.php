@@ -16,9 +16,16 @@
                     <label for="receiver_wallet_id">Recipient's wallet ID:</label>
                     <input class="flex rounded-full border border-gray-800 @error('recipient_wallet_id') is-danger @enderror" name="recipient_wallet_id" value="{{ old('recipient_wallet_id') }}" required>
                     <p class="help is-danger">{{ $errors->first('recipient_wallet_id') }}</p>
+                    @if (session('error'))
+                        <div class="flex justify-center font-bold text-xl text-red-900">{{ Session::get('error') }}</div>
+                    @endif
 
-                    <input type="hidden" name="sender_wallet_id" value="{{ $wallet->id }}">
-                    <button class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Send</button>
+                    <div class="container flex justify-between">
+                        <button type="button" class="mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" onclick="window.location.href='/wallets/{{ $wallet->id }}'">Back</button>
+                        <input type="hidden" name="sender_wallet_id" value="{{ $wallet->id }}">
+                        <button class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Send</button>
+                    </div>
+
                 </form>
             </div>
         </div>
