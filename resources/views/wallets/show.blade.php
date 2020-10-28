@@ -29,8 +29,8 @@
                                     <td class="border border-gray-800">
                                         €{{ number_format($transaction['amount'], 2) }}</td>
                                     <td class="border border-gray-800">{{ $transaction['description'] }}</td>
-                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['sender_id'])->username }}</td>
-                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['recipient_id'])->username }}</td>
+                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['sender_id'])->fullname }}</td>
+                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['recipient_id'])->fullname }}</td>
                                     <td class="border border-gray-800">{{ \Carbon\Carbon::parse($transaction['created_at'])->format('H:i d/M/Y') }}</td>
                                     <td class="border border-gray-800">
                                         <form method="post"

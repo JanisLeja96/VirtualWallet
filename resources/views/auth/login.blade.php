@@ -11,13 +11,13 @@
                 {{ session('status') }}
             </div>
         @endif
-        <div class="d-block">
+        <div class="d-block username">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
+            <div class="username">
                 <x-jet-label for="username" value="{{ __('Username') }}" />
-                <x-jet-input id="username" class="block mt-1 w-full" type="username" name="username" :value="old('username')" required autofocus />
+                <input dusk="username" id="username" class="block mt-1 w-full" name="username" value="{{ old('username') }}" required autofocus>
             </div>
 
             <div class="mt-4">
