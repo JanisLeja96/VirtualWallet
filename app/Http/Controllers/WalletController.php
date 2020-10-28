@@ -54,13 +54,24 @@ class WalletController extends Controller
             return !in_array($wallet->id, str_split($transaction['hidden_for']));
         });
 
+        $outgoing = array_filter($transactions, function($transaction) {
+            return $transaction['type'] == 'Outgoing';
+        });
+
+        $incoming = array_filter($transactions, function($transaction) {
+            return $transaction['type'] == 'Incoming';
+        });
+
+
         usort($transactions, function($a, $b) {
             return strtotime($b['created_at']) - strtotime($a['created_at']);
         });
 
         return view('wallets.show', [
             'wallet' => $wallet,
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'outgoingSum' => number_format(array_sum(array_column($outgoing, 'amount')), 2),
+            'incomingSum' => number_format(array_sum(array_column($incoming, 'amount')), 2)
         ]);
     }
 

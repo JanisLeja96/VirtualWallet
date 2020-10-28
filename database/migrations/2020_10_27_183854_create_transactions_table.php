@@ -23,6 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('recipient_wallet_id');
             $table->string('hidden_for')->nullable();
             $table->boolean('fraudulent')->default('0');
+            $table->unsignedBigInteger('marked_by')->nullable();
             $table->timestamps();
 
             $table->foreign('sender_id')
