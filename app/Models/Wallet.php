@@ -21,11 +21,6 @@ class Wallet extends Model
         return route('showWallet', $this);
     }
 
-    public function deductFromBalance(float $amount)
-    {
-        $this->attributes['balance'] -= $amount;
-    }
-
     public function outgoingTransactions()
     {
         return $this->hasMany(Transaction::class, 'sender_id')->orderByDesc('created_at');

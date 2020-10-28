@@ -31,6 +31,8 @@ class TransactionController extends Controller
 
         if ($wallet->balance < (float) request('amount')) {
             return back()->withError('Insufficient funds')->withInput();
+        } else if ($recipientWallet->id == $wallet->id) {
+            return back()->withError('Invalid wallet ID entered')->withInput();
         }
 
 
@@ -50,9 +52,8 @@ class TransactionController extends Controller
         return redirect($wallet->path());
     }
 
-    public function hide(Wallet $wallet, string $transactionId)
+    public function hide(Wallet $wallet, Transaction $transaction)
     {
-        $transaction = Transaction::find($transactionId);
         $transaction->hidden_for .= " {$wallet->id}";
         $transaction->save();
         return redirect($wallet->path());
