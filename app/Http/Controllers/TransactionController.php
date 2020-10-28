@@ -22,6 +22,7 @@ class TransactionController extends Controller
             'description' => 'required',
             'recipient_wallet_id' => 'required'
         ]);
+
         try {
             $recipientWallet = Wallet::findOrFail(request('recipient_wallet_id'));
         } catch (ModelNotFoundException $exception) {
@@ -46,6 +47,13 @@ class TransactionController extends Controller
         $recipientWallet->update(['balance' => $recipientWallet->balance + request('amount')]);
 
 
+        return redirect($wallet->path());
+    }
+
+    public function destroy(Wallet $wallet, string $transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        $transaction->delete();
         return redirect($wallet->path());
     }
 }

@@ -38,7 +38,22 @@ class WalletController extends Controller
 
     public function show(Wallet $wallet)
     {
-        return view('wallets.show', ['wallet' => $wallet]);
+        $outgoing = $wallet->outgoingTransactions->toArray();
+        foreach ($outgoing as &$transaction) {
+            $transaction['type'] = 'Outgoing';
+        }
+        $incoming = $wallet->incomingTransactions->toArray();
+
+        foreach ($incoming as &$transaction) {
+            $transaction['type'] = 'Incoming';
+        }
+
+        $transactions = [...$outgoing, ...$incoming];
+
+        return view('wallets.show', [
+            'wallet' => $wallet,
+            'transactions' => $transactions
+        ]);
     }
 
     public function destroy(Wallet $wallet)

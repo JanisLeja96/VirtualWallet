@@ -9,6 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function senderWallet()
     {
         return $this->belongsTo(Wallet::class);
