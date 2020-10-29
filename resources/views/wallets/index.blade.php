@@ -11,9 +11,9 @@
                 </a>
 
             @endforeach
-            <div class="flex justify-center mr-2 mb-2 ml-auto">
+            <div class="flex justify-center">
                 <form method="get" action="{{ route('createWallet') }}">
-                    <button class="mt-12 w-32 h-12 bg-blue-300 items-end rounded-full text-sm border border-gray-800" type="submit">Create new wallet</button>
+                    <button class="mt-12 w-32 h-12 bg-blue-300 rounded-full text-sm border border-gray-800" type="submit">Create new wallet</button>
                 </form>
             </div>
         </div>
