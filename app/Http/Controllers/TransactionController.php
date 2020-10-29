@@ -71,6 +71,6 @@ class TransactionController extends Controller
             return redirect($wallet->path());
         }
 
-        return redirect($wallet->path())->withError('Only user marked transaction can unmark it')->withInput();
+        return redirect($wallet->path())->withError('Only user who marked transaction can unmark it')->withInput();
     }
 }
