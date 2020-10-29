@@ -23,7 +23,7 @@
                     <div class="container flex justify-between">
                         <button type="button" class="mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" onclick="window.location.href='/wallets/{{ $wallet->id }}'">Back</button>
                         <input type="hidden" name="sender_wallet_id" value="{{ $wallet->id }}">
-                        <button class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Send</button>
+                        <button dusk="send" class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Send</button>
                     </div>
 
                 </form>

@@ -45,7 +45,7 @@
                                               action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction['id'] }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="w-full h-full border-gray-800 border bg-red-600"
+                                            <button dusk="deleteTransaction" class="w-full h-full border-gray-800 border bg-red-600"
                                                     type="submit">X
                                             </button>
                                         </form>
@@ -65,14 +65,14 @@
                         </button>
                     </form>
                     <form method="GET" action="/wallets/{{ $wallet->id }}/send">
-                        <button class="rounded-full w-48 h-8 bg-blue-300 border border-gray-800" type="submit">New
+                        <button dusk="newTransaction" class="rounded-full w-48 h-8 bg-blue-300 border border-gray-800" type="submit">New
                             Transaction
                         </button>
                     </form>
                     <form method="POST" action="/wallets/{{ $wallet->id }}">
                         @csrf
                         @method('DELETE')
-                        <button class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Delete
+                        <button dusk="delete" class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Delete
                         </button>
                     </form>
                 </div>
