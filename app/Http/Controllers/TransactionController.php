@@ -42,12 +42,11 @@ class TransactionController extends Controller
         $transaction->recipient_wallet_id = request('recipient_wallet_id');
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
         $transaction->sender_wallet_id = request('sender_wallet_id');
-        $transaction->sender_id = Wallet::find($wallet->id)->id;
+        $transaction->sender_id = Wallet::find($wallet->id)->user->id;
         $transaction->save();
 
         $wallet->update(['balance' => $wallet->balance - request('amount')]);
         $recipientWallet->update(['balance' => $recipientWallet->balance + request('amount')]);
-
 
         return redirect($wallet->path());
     }
