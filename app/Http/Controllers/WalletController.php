@@ -62,7 +62,6 @@ class WalletController extends Controller
             return $transaction['type'] == 'Incoming';
         });
 
-
         usort($transactions, function($a, $b) {
             return strtotime($b['created_at']) - strtotime($a['created_at']);
         });

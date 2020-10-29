@@ -11,6 +11,7 @@
                 </div>
                 <div class="container mt-6">
                     @if ($transactions)
+
                         <div class="mr-full w-full font-bold text-xl">Recent transactions</div>
                         <table class="w-full">
                             <tr class="border border-gray-800">
