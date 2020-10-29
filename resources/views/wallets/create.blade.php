@@ -12,7 +12,7 @@
                     <input class="flex rounded-full border border-gray-800 @error('balance') is-danger @enderror" name="balance" value="{{ old('balance') }}" required>
                     <p class="help is-danger">{{ $errors->first('balance') }}</p>
                     <input type="hidden" name="user_id" value="{{ Auth::user()['id'] }}">
-                    <button class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Create</button>
+                    <button dusk="create" class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Create</button>
                 </form>
             </div>
         </div>

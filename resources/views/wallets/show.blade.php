@@ -61,7 +61,7 @@
                 </div>
                 <div class="flex space-x-4 w-full mt-6 justify-between">
                     <form method="GET" action="/wallets/{{ $wallet->id }}/edit">
-                        <button class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Rename
+                        <button dusk="rename" class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Rename
                         </button>
                     </form>
                     <form method="GET" action="/wallets/{{ $wallet->id }}/send">

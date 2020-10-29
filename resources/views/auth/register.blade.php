@@ -34,7 +34,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4" dusk="register">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>

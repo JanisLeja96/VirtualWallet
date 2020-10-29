@@ -16,7 +16,7 @@
                 <x-jet-nav-link align="right" width="48">
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
-                        <button class="rounded-full border border-gray-800 w-32 h-12 bg-blue-300" type="submit">Log
+                        <button dusk="logout" class="rounded-full border border-gray-800 w-32 h-12 bg-blue-300" type="submit">Log
                             out
                         </button>
                     </form>

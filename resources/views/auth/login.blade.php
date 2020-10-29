@@ -32,7 +32,7 @@
                 </label>
             </div>
             <div class="items-center justify-end mt-4 d-inline-block">
-                <x-jet-button class="ml-4">
+                <x-jet-button dusk="login" class="ml-4">
                     {{ __('Login') }}
                 </x-jet-button>
             </div>

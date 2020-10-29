@@ -3,9 +3,9 @@
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <div class="flex justify-center text-4xl font-bold">Wallets</div>
             @foreach ($wallets as $wallet)
-                <a href="/wallets/{{ $wallet->id }}">
+                <a href="/wallets/{{ $wallet->id }}" dusk="showWallet">
                     <div class="flex w-full h-16 border-gray-800 border items-center mt-4">
-                        <div class="flex w-3/4 text-xl font-black font-bold truncate">{{ $wallet->name }}</div>
+                        <div dusk="wallet" class="flex w-3/4 text-xl font-black font-bold truncate">{{ $wallet->name }}</div>
                         <div class="flex w-4/12">€{{ number_format($wallet->balance, 2) }}</div>
                     </div>
                 </a>

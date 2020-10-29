@@ -9,7 +9,7 @@
                     <label for="name">Wallet name:</label>
                     <input class="flex rounded-full border border-gray-800 @error('name') is-danger @enderror" name="name" value="{{ $wallet->name }}" required>
                     <p class="help is-danger">{{ $errors->first('name') }}</p>
-                    <button class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Update</button>
+                    <button dusk="update" class="ml-20 mt-6 rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Update</button>
                 </form>
             </div>
         </div>
