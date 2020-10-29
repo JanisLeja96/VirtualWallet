@@ -60,12 +60,12 @@ class TransactionController extends Controller
 
     public function mark(Wallet $wallet, Transaction $transaction)
     {
-        if ($transaction->fraudulent == 0 || $transaction->marked_by == $wallet->id) {
+        if ($transaction->fraudulent == 0 || $transaction->marked_by == $wallet->user->id) {
             if ($transaction->fraudulent == 1) {
                 $transaction->fraudulent = 0;
             } else {
                 $transaction->fraudulent = 1;
-                $transaction->marked_by = $wallet->id;
+                $transaction->marked_by = $wallet->user->id;
             }
         }
 
