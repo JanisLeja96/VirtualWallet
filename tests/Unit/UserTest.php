@@ -4,15 +4,14 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use App\Models\Wallet;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
+    use RefreshDatabase;
+
     public function testUserCanBeCreated()
     {
         $user = User::factory()->create(['username' => 'test']);
@@ -23,7 +22,8 @@ class UserTest extends TestCase
 
     public function testUserWalletCanBeReturned()
     {
-        $user = User::find(1);
+        $user = User::factory()->create(['id' => 1]);
+        $wallet = Wallet::factory()->create(['user_id' => 1]);
         $this->assertInstanceOf(Wallet::class, $user->wallets->first());
     }
 }
