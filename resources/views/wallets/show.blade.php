@@ -54,6 +54,9 @@
                                 </tr>
                             @endforeach
                         </table>
+                        @if (session('error'))
+                            <div class="font-bold text-red-800">{{ session('error') }}</div>
+                        @endif
                         <div class="mt-4">
                             <div>Sum of incoming transactions: <strong>€{{ $incomingSum }}</strong></div>
                             <div>Sum of outgoing transactions: <strong>€{{ $outgoingSum }}</strong></div>
@@ -62,7 +65,8 @@
                 </div>
                 <div class="flex space-x-4 w-full mt-6 justify-between">
                     <form method="GET" action="/wallets/{{ $wallet->id }}/edit">
-                        <button dusk="rename" class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Rename
+                        <button dusk="rename" class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800"
+                                type="submit">Rename
                         </button>
                     </form>
                     <form method="GET" action="/wallets/{{ $wallet->id }}/send">

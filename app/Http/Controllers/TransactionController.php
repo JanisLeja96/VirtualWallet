@@ -67,9 +67,10 @@ class TransactionController extends Controller
                 $transaction->fraudulent = 1;
                 $transaction->marked_by = $wallet->user->id;
             }
+            $transaction->save();
+            return redirect($wallet->path());
         }
 
-        $transaction->save();
-        return redirect($wallet->path());
+        return redirect($wallet->path())->withError('Only user marked transaction can unmark it')->withInput();
     }
 }
