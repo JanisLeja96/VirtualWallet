@@ -13,7 +13,6 @@ use Tests\TestCase;
 
 class TransactionTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function testTransactionCanBeCreated()
