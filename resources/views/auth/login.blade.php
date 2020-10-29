@@ -11,7 +11,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <div class="d-block">
+        <div class="d-inline-block">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -31,19 +31,11 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-            <div class="items-center justify-end mt-4 d-inline-block">
-                <x-jet-button dusk="login" class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
+            <div class="w-full flex items-center justify-end mt-4">
+                <a href="{{ route('register') }}" class="underline text-sm">Don't have an account yet?</a>
+                <x-jet-button class="ml-auto mr-0">{{ __('Login') }}</x-jet-button>
             </div>
         </form>
-        <div class="items-center align-items-start mt-4 d-inline-block">
-            <form method="GET" action="{{ route('register') }}">
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </form>
-        </div>
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
