@@ -21,9 +21,14 @@ class Wallet extends Model
         return route('showWallet', $this);
     }
 
-    public function getTransactionsAttribute()
+    public function getVisibleTransactions()
     {
-        return $this->incomingTransactions->merge($this->outgoingTransactions)->sortByDesc('created_at');
+        return $this->incomingTransactions
+            ->merge($this->outgoingTransactions)
+            ->reject(function($transaction) {
+                return mb_strpos($transaction->hidden_for, " $this->id ") !== false;
+            })
+            ->sortByDesc('created_at');
     }
 
     public function outgoingTransactions()
@@ -38,12 +43,20 @@ class Wallet extends Model
 
     public function getIncomingTransactionsSumAttribute()
     {
-        return number_format($this->incomingTransactions()->sum('amount'), 2, '.', ',');
+        return number_format($this->incomingTransactions
+            ->reject(function($transaction) {
+                return mb_strpos($transaction->hidden_for, " $this->id ") !== false;
+            })
+            ->sum('amount'), 2, '.', ',');
     }
 
     public function getOutgoingTransactionsSumAttribute()
     {
-        return number_format($this->outgoingTransactions()->sum('amount'), 2, '.', ',');
+        return number_format($this->outgoingTransactions
+            ->reject(function($transaction) {
+                return mb_strpos($transaction->hidden_for, " $this->id ") !== false;
+            })
+            ->sum('amount'), 2, '.', ',');
     }
 
 }

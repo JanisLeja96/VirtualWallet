@@ -39,10 +39,10 @@ class TransactionController extends Controller
         $transaction = new Transaction();
         $transaction->amount = request('amount');
         $transaction->description = request('description');
-        $transaction->recipient_wallet_id = request('recipient_wallet_id');
+        $transaction->recipient_wallet_id = (int) request('recipient_wallet_id');
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
-        $transaction->sender_wallet_id = request('sender_wallet_id');
-        $transaction->sender_id = Wallet::find($wallet->id)->user->id;
+        $transaction->sender_wallet_id = (int) request('sender_wallet_id');
+        $transaction->sender_id = $wallet->user->id;
         $transaction->save();
 
         $wallet->update(['balance' => $wallet->balance - request('amount')]);
@@ -53,7 +53,7 @@ class TransactionController extends Controller
 
     public function hide(Wallet $wallet, Transaction $transaction)
     {
-        $transaction->hidden_for .= " {$wallet->id}";
+        $transaction->hidden_for .= " {$wallet->id} ";
         $transaction->save();
         return redirect($wallet->path());
     }

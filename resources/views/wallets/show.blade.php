@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="container mt-6">
-                    @if ($wallet->transactions->count() > 0)
+                    @if ($wallet->getVisibleTransactions()->count() > 0)
 
                         <div class="mr-full w-full font-bold text-xl">Recent transactions</div>
                         <table class="w-full">
@@ -24,7 +24,7 @@
                                 <th class="border border-gray-800">Fraudulent</th>
                                 <th class="border border-gray-800">Delete</th>
                             </tr>
-                            @foreach ($wallet->transactions as $transaction)
+                            @foreach ($wallet->getVisibleTransactions() as $transaction)
                                 <tr class="border border-gray-800 @if ($transaction->fraudulent == 1) bg-red-300 @endif">
                                     <td class="border border-gray-800">{{ $transaction->getTransactionType($wallet) }}</td>
                                     <td class="border border-gray-800">
