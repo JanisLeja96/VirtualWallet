@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="container mt-6">
-                    @if ($transactions)
+                    @if ($wallet->transactions->count() > 0)
 
                         <div class="mr-full w-full font-bold text-xl">Recent transactions</div>
                         <table class="w-full">
@@ -24,18 +24,18 @@
                                 <th class="border border-gray-800">Fraudulent</th>
                                 <th class="border border-gray-800">Delete</th>
                             </tr>
-                            @foreach ($transactions as $transaction)
-                                <tr class="border border-gray-800 @if ($transaction['fraudulent'] == 1) bg-red-300 @endif">
-                                    <td class="border border-gray-800">{{ $transaction['type'] }}</td>
+                            @foreach ($wallet->transactions as $transaction)
+                                <tr class="border border-gray-800 @if ($transaction->fraudulent == 1) bg-red-300 @endif">
+                                    <td class="border border-gray-800">{{ $transaction->getTransactionType($wallet) }}</td>
                                     <td class="border border-gray-800">
-                                        €{{ number_format($transaction['amount'], 2) }}</td>
-                                    <td class="border border-gray-800">{{ $transaction['description'] }}</td>
-                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['sender_id'])->fullname }}</td>
-                                    <td class="border border-gray-800">{{ \App\Models\User::find($transaction['recipient_id'])->fullname }}</td>
-                                    <td class="border border-gray-800">{{ \Carbon\Carbon::parse($transaction['created_at'])->format('H:i d/M/Y') }}</td>
+                                        €{{ $transaction->formattedAmount }}</td>
+                                    <td class="border border-gray-800">{{ $transaction->description }}</td>
+                                    <td class="border border-gray-800">{{ $transaction->senderName }}</td>
+                                    <td class="border border-gray-800">{{ $transaction->recipientName }}</td>
+                                    <td class="border border-gray-800">{{ $transaction->date }}</td>
                                     <td class="border border-gray-800">
                                         <form method="post"
-                                              action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction['id'] }}/mark">
+                                              action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction->id }}/mark">
                                             @csrf
                                             <button class="w-full h-full border-gray-800 border bg-red-600"
                                                     type="submit">Mark
@@ -43,7 +43,7 @@
                                         </form>
                                     <td class="border border-gray-800">
                                         <form method="post"
-                                              action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction['id'] }}">
+                                              action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="w-full h-full border-gray-800 border bg-red-600"
@@ -58,8 +58,8 @@
                             <div class="font-bold text-red-800">{{ session('error') }}</div>
                         @endif
                         <div class="mt-4">
-                            <div>Sum of incoming transactions: <strong>€{{ $incomingSum }}</strong></div>
-                            <div>Sum of outgoing transactions: <strong>€{{ $outgoingSum }}</strong></div>
+                            <div>Sum of incoming transactions: <strong>€{{ $wallet->incomingTransactionsSum }}</strong></div>
+                            <div>Sum of outgoing transactions: <strong>€{{ $wallet->outgoingTransactionsSum }}</strong></div>
                         </div>
                     @endif
                 </div>

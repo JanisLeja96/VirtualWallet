@@ -38,39 +38,8 @@ class WalletController extends Controller
 
     public function show(Wallet $wallet)
     {
-        $outgoing = $wallet->outgoingTransactions->toArray();
-        foreach ($outgoing as &$transaction) {
-            $transaction['type'] = 'Outgoing';
-        }
-        $incoming = $wallet->incomingTransactions->toArray();
-
-        foreach ($incoming as &$transaction) {
-            $transaction['type'] = 'Incoming';
-        }
-
-        $transactions = [...$outgoing, ...$incoming];
-
-        $transactions = array_filter($transactions, function($transaction) use ($wallet) {
-            return !in_array($wallet->id, str_split($transaction['hidden_for']));
-        });
-
-        $outgoing = array_filter($transactions, function($transaction) {
-            return $transaction['type'] == 'Outgoing';
-        });
-
-        $incoming = array_filter($transactions, function($transaction) {
-            return $transaction['type'] == 'Incoming';
-        });
-
-        usort($transactions, function($a, $b) {
-            return strtotime($b['created_at']) - strtotime($a['created_at']);
-        });
-
         return view('wallets.show', [
             'wallet' => $wallet,
-            'transactions' => $transactions,
-            'outgoingSum' => number_format(array_sum(array_column($outgoing, 'amount')), 2),
-            'incomingSum' => number_format(array_sum(array_column($incoming, 'amount')), 2)
         ]);
     }
 

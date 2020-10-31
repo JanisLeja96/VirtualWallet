@@ -21,6 +21,11 @@ class Wallet extends Model
         return route('showWallet', $this);
     }
 
+    public function getTransactionsAttribute()
+    {
+        return $this->incomingTransactions->merge($this->outgoingTransactions)->sortByDesc('created_at');
+    }
+
     public function outgoingTransactions()
     {
         return $this->hasMany(Transaction::class, 'sender_wallet_id')->orderByDesc('created_at');
@@ -29,6 +34,16 @@ class Wallet extends Model
     public function incomingTransactions()
     {
         return $this->hasMany(Transaction::class, 'recipient_wallet_id')->orderByDesc('created_at');
+    }
+
+    public function getIncomingTransactionsSumAttribute()
+    {
+        return number_format($this->incomingTransactions()->sum('amount'), 2, '.', ',');
+    }
+
+    public function getOutgoingTransactionsSumAttribute()
+    {
+        return number_format($this->outgoingTransactions()->sum('amount'), 2, '.', ',');
     }
 
 }
