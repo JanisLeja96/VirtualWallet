@@ -33,6 +33,14 @@ class CreateTransactionsTable extends Migration
             $table->foreign('recipient_id')
                 ->references('id')
                 ->on('users');
+
+            $table->foreign('sender_wallet_id')
+                ->references('id')
+                ->on('wallets');
+
+            $table->foreign('recipient_wallet_id')
+                ->references('id')
+                ->on('wallets');
         });
     }
 
