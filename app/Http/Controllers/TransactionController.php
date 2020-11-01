@@ -17,7 +17,7 @@ class TransactionController extends Controller
 
     public function store(Wallet $wallet)
     {
-        request()->validate([
+        $validated = request()->validate([
             'amount' => ['required', 'numeric'],
             'description' => 'required',
             'recipient_wallet_id' => 'required'
@@ -37,9 +37,9 @@ class TransactionController extends Controller
 
 
         $transaction = new Transaction();
-        $transaction->amount = request('amount');
-        $transaction->description = request('description');
-        $transaction->recipient_wallet_id = (int) request('recipient_wallet_id');
+        $transaction->amount = $validated['amount'];
+        $transaction->description = $validated['description'];
+        $transaction->recipient_wallet_id = (int) $validated['recipient_wallet_id'];
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
         $transaction->sender_wallet_id = (int) request('sender_wallet_id');
         $transaction->sender_id = $wallet->user->id;
