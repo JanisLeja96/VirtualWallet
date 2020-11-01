@@ -59,4 +59,9 @@ class Wallet extends Model
             ->sum('amount'), 2, '.', ',');
     }
 
+    public function getFormattedBalance()
+    {
+        return number_format($this->balance, 2, '.', ',');
+    }
+
 }

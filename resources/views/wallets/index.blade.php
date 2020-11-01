@@ -6,7 +6,7 @@
                 <a href="/wallets/{{ $wallet->id }}" dusk="showWallet">
                     <div class="flex w-full h-16 border-gray-800 border items-center mt-4">
                         <div dusk="wallet" class="flex w-3/4 text-xl font-black font-bold truncate">{{ $wallet->name }}</div>
-                        <div class="flex w-4/12">€{{ number_format($wallet->balance, 2) }}</div>
+                        <div class="flex w-4/12">€{{ $wallet->getFormattedBalance() }}</div>
                     </div>
                 </a>
 
