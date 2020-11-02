@@ -32,7 +32,6 @@ class TransactionController extends Controller
             return back()->withError('Invalid wallet ID entered')->withInput();
         }
 
-
         $transaction = new Transaction();
         $transaction->fill($validated);
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
