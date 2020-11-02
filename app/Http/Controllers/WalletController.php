@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWallet;
+use App\Http\Requests\UpdateWallet;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -20,20 +22,16 @@ class WalletController extends Controller
         return view('wallets.create');
     }
 
-    public function store()
+    public function store(StoreWallet $request)
     {
-        request()->validate([
-            'name' => 'required',
-            'balance' => ['required', 'numeric']
-        ]);
+        $validated = $request->validated();
 
         $wallet = new Wallet();
-        $wallet->name = request('name');
-        $wallet->balance = request('balance');
+        $wallet->fill($validated);
         $wallet->user_id = request('user_id');
         $wallet->save();
 
-        return redirect('/wallets');
+        return redirect(route('wallets'));
     }
 
     public function show(Wallet $wallet)
@@ -54,15 +52,10 @@ class WalletController extends Controller
         return view('wallets.edit', ['wallet' => $wallet]);
     }
 
-    public function update(Wallet $wallet)
+    public function update(UpdateWallet $request, Wallet $wallet)
     {
-        request()->validate([
-            'name' => 'required',
-        ]);
-
-        $wallet->update([
-            'name' => request('name'),
-        ]);
+        $validated = $request->validated();
+        $wallet->update($validated);
 
         return redirect($wallet->path());
     }

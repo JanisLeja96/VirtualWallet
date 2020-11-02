@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTransaction;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
@@ -15,13 +16,9 @@ class TransactionController extends Controller
         return view('transactions.create', ['wallet' => $wallet]);
     }
 
-    public function store(Wallet $wallet)
+    public function store(StoreTransaction $request, Wallet $wallet)
     {
-        $validated = request()->validate([
-            'amount' => ['required', 'numeric'],
-            'description' => 'required',
-            'recipient_wallet_id' => 'required'
-        ]);
+        $validated = $request->validated();
 
         try {
             $recipientWallet = Wallet::findOrFail(request('recipient_wallet_id'));
@@ -37,9 +34,7 @@ class TransactionController extends Controller
 
 
         $transaction = new Transaction();
-        $transaction->amount = $validated['amount'];
-        $transaction->description = $validated['description'];
-        $transaction->recipient_wallet_id = (int) $validated['recipient_wallet_id'];
+        $transaction->fill($validated);
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
         $transaction->sender_wallet_id = (int) request('sender_wallet_id');
         $transaction->sender_id = $wallet->user->id;
