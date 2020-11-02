@@ -1,3 +1,5 @@
+![gif of project in action](https://github.com/JanisLeja96/VirtualWallet/blob/master/VirtualWallet.gif)
+
 # Virtual Wallet
 
 This is a basic virtual wallet web application. Unit and feature tests are included.
