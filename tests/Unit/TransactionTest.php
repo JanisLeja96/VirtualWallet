@@ -19,8 +19,8 @@ class TransactionTest extends TestCase
     {
         User::factory()->create(['id' => 1]);
         User::factory()->create(['id' => 2]);
-        Wallet::factory()->create();
-        Wallet::factory()->create(['user_id' => 2]);
+        Wallet::factory()->create(['user_id' => 1, 'id' => 1]);
+        Wallet::factory()->create(['user_id' => 2, 'id' => 2]);
         $this->assertInstanceOf(Transaction::class, new Transaction());
     }
 
@@ -28,8 +28,8 @@ class TransactionTest extends TestCase
     {
         User::factory()->create(['id' => 1]);
         User::factory()->create(['id' => 2]);
-        Wallet::factory()->create();
-        Wallet::factory()->create(['user_id' => 2]);
+        Wallet::factory()->create(['user_id' => 1, 'id' => 1]);
+        Wallet::factory()->create(['user_id' => 2, 'id' => 2]);
         $transaction = Transaction::factory()->create();
         $this->assertEquals(1, $transaction->sender->id);
     }
@@ -38,8 +38,8 @@ class TransactionTest extends TestCase
     {
         User::factory()->create(['id' => 1]);
         User::factory()->create(['id' => 2]);
-        Wallet::factory()->create();
-        Wallet::factory()->create(['user_id' => 2]);
+        Wallet::factory()->create(['user_id' => 1, 'id' => 1]);
+        Wallet::factory()->create(['user_id' => 2, 'id' => 2]);
         $transaction = Transaction::factory()->create();
         $this->assertEquals(2, $transaction->recipient->id);
     }
@@ -48,8 +48,8 @@ class TransactionTest extends TestCase
     {
         User::factory()->create(['id' => 1]);
         User::factory()->create(['id' => 2]);
-        Wallet::factory()->create();
-        Wallet::factory()->create(['user_id' => 2]);
+        Wallet::factory()->create(['user_id' => 1, 'id' => 1]);
+        Wallet::factory()->create(['user_id' => 2, 'id' => 2]);
         $transaction = Transaction::factory()->create();
         $this->assertEquals(1, $transaction->sender_wallet_id);
     }
@@ -58,8 +58,8 @@ class TransactionTest extends TestCase
     {
         User::factory()->create(['id' => 1]);
         User::factory()->create(['id' => 2]);
-        Wallet::factory()->create();
-        Wallet::factory()->create(['user_id' => 2]);
+        Wallet::factory()->create(['user_id' => 1, 'id' => 1]);
+        Wallet::factory()->create(['user_id' => 2, 'id' => 2]);
         $transaction = Transaction::factory()->create();
         $this->assertEquals(2, $transaction->recipient_wallet_id);
     }

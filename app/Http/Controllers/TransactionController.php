@@ -36,7 +36,6 @@ class TransactionController extends Controller
         $transaction = new Transaction();
         $transaction->fill($validated);
         $transaction->recipient_id = User::find($recipientWallet->user_id)->id;
-        $transaction->sender_wallet_id = (int) request('sender_wallet_id');
         $transaction->sender_id = $wallet->user->id;
         $transaction->save();
 

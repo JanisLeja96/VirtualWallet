@@ -28,7 +28,7 @@ class WalletController extends Controller
 
         $wallet = new Wallet();
         $wallet->fill($validated);
-        $wallet->user_id = request('user_id');
+        $wallet->user_id = $validated['user_id'];
         $wallet->save();
 
         return redirect(route('wallets'));
