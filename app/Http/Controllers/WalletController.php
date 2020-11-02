@@ -44,7 +44,7 @@ class WalletController extends Controller
     public function destroy(Wallet $wallet)
     {
         $wallet->delete();
-        return redirect('/wallets');
+        return redirect(route('wallets'));
     }
 
     public function edit(Wallet $wallet)
