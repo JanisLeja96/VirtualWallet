@@ -46,7 +46,7 @@
                                               action="/wallets/{{ $wallet->id }}/transactions/{{ $transaction->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="w-full h-full border-gray-800 border bg-red-600"
+                                            <button onclick="return confirm('Are you sure you want to delete this transaction?')" class="w-full h-full border-gray-800 border bg-red-600"
                                                     type="submit">X
                                             </button>
                                         </form>
@@ -77,7 +77,7 @@
                     <form method="POST" action="/wallets/{{ $wallet->id }}">
                         @csrf
                         @method('DELETE')
-                        <button class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Delete
+                        <button onclick="return confirm('Are you sure you want to delete this wallet?')" class="rounded-full w-24 h-8 bg-blue-300 border border-gray-800" type="submit">Delete
                         </button>
                     </form>
                 </div>
