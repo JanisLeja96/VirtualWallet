@@ -6,11 +6,15 @@ This is a basic virtual wallet web application. Unit and feature tests are inclu
   
 ## Running the project
 
-In order to run the project, clone this repository, configure your `.env` file and install all dependencies using:
+In order to run the project, clone this repository, configure your `.env` file and install all dependencies using
 
 `php composer install`
 
 `npm install`
+
+Then you'll need to create the necessary database using
+
+`php artisan mysql:createdb`
 
 Afterwards you need to run database migrations using  
 
