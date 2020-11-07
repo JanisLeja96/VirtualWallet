@@ -14,17 +14,17 @@ class Transaction extends Model
 
     public function senderWallet()
     {
-        return $this->belongsTo(Wallet::class);
+        return $this->belongsTo(Wallet::class, 'sender_wallet_id')->withTrashed();
     }
 
     public function recipientWallet()
     {
-        return $this->belongsTo(Wallet::class);
+        return $this->belongsTo(Wallet::class, 'recipient_wallet_id')->withTrashed();
     }
 
     public function sender()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'sender_id');
     }
 
     public function getSenderNameAttribute()
@@ -34,7 +34,7 @@ class Transaction extends Model
 
     public function recipient()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'recipient_id');
     }
 
     public function getRecipientNameAttribute()

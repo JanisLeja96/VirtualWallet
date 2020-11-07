@@ -26,13 +26,6 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('marked_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('sender_id')
-                ->references('id')
-                ->on('users');
-
-            $table->foreign('recipient_id')
-                ->references('id')
-                ->on('users');
         });
     }
 
