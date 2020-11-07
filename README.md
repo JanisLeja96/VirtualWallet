@@ -34,7 +34,3 @@ Errors are being handled by Transaction controller. I would like to delegate thi
 
 When a user deletes a transaction, their ID is put into the "hidden_for" field of the Transaction entry.
 I would like to figure out a better way of doing this.
-
-### Add confirmation prompts
-
-I would like to add confirmation prompts for actions such as deleting a wallet or transaction.
