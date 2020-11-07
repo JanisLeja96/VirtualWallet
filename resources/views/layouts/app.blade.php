@@ -20,9 +20,13 @@
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
     </head>
+    @extends('navigation')
+    @section('topbar')
+        @parent
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-dropdown')
+
+
             <!-- Page Content -->
             <main>
                 <div class="py-12">
@@ -34,7 +38,7 @@
                 {{ $slot }}
             </main>
         </div>
-
+        @endsection
         @stack('modals')
 
         @livewireScripts
