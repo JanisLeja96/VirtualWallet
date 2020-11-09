@@ -6,21 +6,23 @@ This is a basic virtual wallet web application. Unit and feature tests are inclu
   
 ## Running the project
 
-In order to run the project, clone this repository, configure your `.env` file and install all dependencies using
+- In order to run the project, clone this repository, configure your `.env` file and install all dependencies using
 
 `php composer install`
 
 `npm install`
 
-Then you'll need to create the necessary database using
+- Then you'll need to create the necessary database using
 
-`php artisan mysql:createdb`
+`php artisan mysql:createdb {db_name}`
 
-Afterwards you need to run database migrations using  
+**Note: If {db_name} is not specified, the default name (virtualwallet) will be used.**
+
+- Afterwards you need to run database migrations using  
 
 `php artisan migrate`
 
-Finally you can run the project using  
+- Finally you can run the project using  
 
 `php artisan serve` 
 
